@@ -1,5 +1,15 @@
 # Compose Shapes Repository
 
+[![Download](https://jitpack.io/v/xavijimenezmulet/shapes-for-jetpackcompose.svg)](https://jitpack.io/#xavijimenezmulet/shapes-for-jetpackcompose)
+[![API](https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=19)
+![Build Status](https://github.com/Dhaval2404/ImagePicker/workflows/Build/badge.svg)
+![Language](https://img.shields.io/badge/language-Kotlin-orange.svg)
+[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/Apache-2.0)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/xavijimenezmulet/SnackBar/blob/main/LICENSE)
+
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/xavijimenez)
+
 The Compose Shapes Repository is a collection of shape utilities and custom shapes designed specifically for use with Jetpack Compose. This repository aims to provide a comprehensive set of pre-defined shapes that can be easily used and customized in your Compose UI projects.
 
 ![shapes](https://github.com/xavijimenezmulet/shapes-for-jetpackcompose/assets/44567433/07c64790-da84-4958-81ec-2f65d934e683)
