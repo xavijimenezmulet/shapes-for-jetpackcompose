@@ -1,7 +1,7 @@
 # Compose Shapes Repository
 
 [![Download](https://jitpack.io/v/xavijimenezmulet/shapes-for-jetpackcompose.svg)](https://jitpack.io/#xavijimenezmulet/shapes-for-jetpackcompose)
-[![API](https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=19)
+[![API](https://img.shields.io/badge/API-26%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=26)
 ![Build Status](https://github.com/Dhaval2404/ImagePicker/workflows/Build/badge.svg)
 ![Language](https://img.shields.io/badge/language-Kotlin-orange.svg)
 [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
