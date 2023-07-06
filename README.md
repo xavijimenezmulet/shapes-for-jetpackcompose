@@ -16,5 +16,20 @@ The Compose Shapes Repository is a collection of shape utilities and custom shap
 
 To get started with the Compose Shapes Repository, simply clone the repository and import the desired shape utilities or custom shapes into your Compose project. You can then use these shapes in your Compose UI code by applying them to the appropriate components using the provided extensions.
 
+```bash
+allprojects {
+	repositories {
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
+
+Step 2. Add the dependency:
+
+```bash
+dependencies {
+	implementation "com.github.xavijimenezmulet:shapes-for-jetpackcompose:$latest_version"
+}
+```
 
 
