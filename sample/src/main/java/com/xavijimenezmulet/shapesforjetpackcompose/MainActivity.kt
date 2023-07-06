@@ -24,7 +24,20 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.xavijimenezmulet.shapes.BubbleShape
+import com.xavijimenezmulet.shapes.CircularShape
+import com.xavijimenezmulet.shapes.CutSquareShape
+import com.xavijimenezmulet.shapes.DiagonalStartCutShape
+import com.xavijimenezmulet.shapes.DiamondShape
+import com.xavijimenezmulet.shapes.HeartShape
+import com.xavijimenezmulet.shapes.LemonShape
+import com.xavijimenezmulet.shapes.ParallelogramShape
+import com.xavijimenezmulet.shapes.PolygonShape
+import com.xavijimenezmulet.shapes.SquareShape
 import com.xavijimenezmulet.shapes.StarShape
+import com.xavijimenezmulet.shapes.TicketShape
+import com.xavijimenezmulet.shapes.TriangleShape
 import com.xavijimenezmulet.shapesforjetpackcompose.ui.theme.ShapesForJetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -46,15 +59,13 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Grid() {
-    val gridItems = listOf(
-        Shapes.Star
-    )
     LazyVerticalGrid(
         modifier = Modifier.fillMaxSize(),
         columns = GridCells.Fixed(2)
     ) {
         items(gridItems.size) { item ->
             Column(
+                modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -66,7 +77,11 @@ fun Grid() {
                         .background(Color.Red),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text("Star", fontWeight = FontWeight.Bold)
+                    Text(
+                        gridItems[item].title,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = gridItems[item].textSize.sp
+                    )
                 }
             }
         }
@@ -81,6 +96,34 @@ fun GridPreview() {
     }
 }
 
-sealed class Shapes(val shape: Shape) {
-    object Star : Shapes(shape = StarShape(5))
+private val gridItems = listOf(
+    Shapes.Star,
+    Shapes.Diamond,
+    Shapes.Square,
+    Shapes.Circle,
+    Shapes.Triangle,
+    Shapes.Heart,
+    Shapes.Polygon,
+    Shapes.Parallelogram,
+    Shapes.Ticket,
+    Shapes.CutSquare,
+    Shapes.Lemon,
+    Shapes.DiagonalStartCut,
+    Shapes.Bubble
+)
+
+sealed class Shapes(val shape: Shape, val title: String, val textSize: Int = 15) {
+    object Star : Shapes(shape = StarShape(5), "Star")
+    object Diamond : Shapes(shape = DiamondShape, "Diamond")
+    object Square : Shapes(shape = SquareShape, "Square")
+    object Circle : Shapes(shape = CircularShape, "Circle")
+    object Triangle : Shapes(shape = TriangleShape, "Triangle", 10)
+    object Heart : Shapes(shape = HeartShape, "Heart")
+    object Polygon : Shapes(shape = PolygonShape, "Polygon")
+    object Parallelogram : Shapes(shape = ParallelogramShape(70f), "Parallelogram", 9)
+    object Ticket : Shapes(shape = TicketShape(24f), "Ticket")
+    object CutSquare : Shapes(shape = CutSquareShape, "Cut Square")
+    object Lemon : Shapes(shape = LemonShape, "Lemon")
+    object DiagonalStartCut : Shapes(shape = DiagonalStartCutShape, "Diagonal Start", 11)
+    object Bubble : Shapes(shape = BubbleShape, "Bubble")
 }
