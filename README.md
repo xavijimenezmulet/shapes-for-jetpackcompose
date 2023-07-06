@@ -44,4 +44,43 @@ dependencies {
 }
 ```
 
+Simple usage:
 
+```kotlin
+val HeartShape: Shape = object : Shape {
+    override fun createOutline(
+        size: Size,
+        layoutDirection: LayoutDirection,
+        density: Density
+    ): Outline {
+        val path = Path().apply {
+            heartPath(size = size)
+            close()
+        }
+        return Outline.Generic(path)
+    }
+}
+```
+
+Now with preview:
+
+```kotlin
+@Preview
+@Composable
+fun HeartPreview() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Box(
+            modifier = Modifier
+                .size(100.dp)
+                .clip(HeartShape)
+                .background(Color.Yellow)
+        )
+    }
+}
+```
+
+Any help to collect shapes and improve the code will be welcome.
