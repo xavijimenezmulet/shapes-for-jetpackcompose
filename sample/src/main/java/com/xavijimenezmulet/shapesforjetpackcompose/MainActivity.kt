@@ -34,6 +34,7 @@ import com.xavijimenezmulet.shapes.HeartShape
 import com.xavijimenezmulet.shapes.LemonShape
 import com.xavijimenezmulet.shapes.ParallelogramShape
 import com.xavijimenezmulet.shapes.PolygonShape
+import com.xavijimenezmulet.shapes.SemicircleShape
 import com.xavijimenezmulet.shapes.SquareShape
 import com.xavijimenezmulet.shapes.StarShape
 import com.xavijimenezmulet.shapes.TicketShape
@@ -109,7 +110,8 @@ private val gridItems = listOf(
     Shapes.CutSquare,
     Shapes.Lemon,
     Shapes.DiagonalStartCut,
-    Shapes.Bubble
+    Shapes.Bubble,
+    Shapes.SemiCircle
 )
 
 sealed class Shapes(val shape: Shape, val title: String, val textSize: Int = 15) {
@@ -126,4 +128,5 @@ sealed class Shapes(val shape: Shape, val title: String, val textSize: Int = 15)
     object Lemon : Shapes(shape = LemonShape, "Lemon")
     object DiagonalStartCut : Shapes(shape = DiagonalStartCutShape, "Diagonal Start", 11)
     object Bubble : Shapes(shape = BubbleShape, "Bubble")
+    object SemiCircle : Shapes(shape = SemicircleShape, "Semi Circle")
 }
