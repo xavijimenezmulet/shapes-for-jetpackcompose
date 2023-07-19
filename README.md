@@ -83,6 +83,11 @@ fun HeartPreview() {
     }
 }
 ```
+
+Preview:
+
+![image](https://github.com/xavijimenezmulet/shapes-for-jetpackcompose/assets/44567433/e3d4b69a-7dc7-4c9a-aff5-f9e4d04aa5d6)
+
 ## Contributions
 
 Specials thanks to:
