@@ -25,7 +25,9 @@ import androidx.compose.ui.unit.dp
  *   @email xavijimenezmulet@macaqueconsulting.com
  */
 
-val AndroidShape: GenericShape = GenericShape { size: Size, _: LayoutDirection ->
+//TODO: Pending implement mouth and eyes
+
+val DroidShape: GenericShape = GenericShape { size: Size, _: LayoutDirection ->
     val headRadius = size.width * 0.3f
     val bodyHeight = size.height * 0.4f
     val bodyWidth = size.width * 0.5f
@@ -159,7 +161,7 @@ fun AndroidPreview() {
         Box(
             modifier = Modifier
                 .size(200.dp)
-                .clip(AndroidShape)
+                .clip(DroidShape)
                 .background(Color.Yellow)
         )
     }
