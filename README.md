@@ -15,6 +15,10 @@ The Compose Shapes Repository is a collection of shape utilities and custom shap
 
 <img src="https://github.com/xavijimenezmulet/shapes-for-jetpackcompose/assets/44567433/18655b88-2db5-40c2-b274-cc184c79501f" width="250" height="500"/> <img src="https://github.com/xavijimenezmulet/shapes-for-jetpackcompose/assets/44567433/5eeb070a-de12-4370-83ee-e4aa676b5fc5" width="250" height="500"/> 
 
+Possible animations: 
+
+![PacmanShape](https://github.com/xavijimenezmulet/shapes-for-jetpackcompose/assets/44567433/1f4c9fce-0d35-4c9a-9dfe-ba272cf8c28b)
+
 ## Features
 
 - **Ready-to-use Shapes**: The repository offers a wide range of pre-defined shapes such as circles, rectangles, triangles, stars, and more. These shapes can be directly used in your Compose UI code, saving you time and effort.
