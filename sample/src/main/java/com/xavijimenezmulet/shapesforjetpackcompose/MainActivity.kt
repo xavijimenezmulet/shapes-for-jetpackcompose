@@ -39,6 +39,7 @@ import com.xavijimenezmulet.shapes.DiamondShape
 import com.xavijimenezmulet.shapes.HeartShape
 import com.xavijimenezmulet.shapes.LemonShape
 import com.xavijimenezmulet.shapes.OctagonShape
+import com.xavijimenezmulet.shapes.PacmanShape
 import com.xavijimenezmulet.shapes.ParallelogramShape
 import com.xavijimenezmulet.shapes.PolygonShape
 import com.xavijimenezmulet.shapes.SemicircleShape
@@ -137,7 +138,8 @@ private val gridItems = listOf(
     Shapes.DiagonalStartCut,
     Shapes.Bubble,
     Shapes.SemiCircle,
-    Shapes.Octagon
+    Shapes.Octagon,
+    Shapes.Pacman
 )
 
 sealed class Shapes(val shape: Shape, val title: String, val textSize: Int = 15) {
@@ -156,4 +158,5 @@ sealed class Shapes(val shape: Shape, val title: String, val textSize: Int = 15)
     object Bubble : Shapes(shape = BubbleShape, "Bubble")
     object SemiCircle : Shapes(shape = SemicircleShape, "Semi Circle")
     object Octagon : Shapes(shape = OctagonShape, "Octagon")
+    object Pacman : Shapes(shape = PacmanShape, "\n\nPacman", 14)
 }
