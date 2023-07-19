@@ -83,5 +83,11 @@ fun HeartPreview() {
     }
 }
 ```
+## Contributions
 
+Specials thanks to:
+
+| Contributor  | Features      | | Github Link |
+| ------------ | ------------- | | ----------- |
+| @afalabarce  | TopAppBarShape| | [GitHub Page](https://github.com/afalabarce)      |
 Any help to collect shapes and improve the code will be welcome.
