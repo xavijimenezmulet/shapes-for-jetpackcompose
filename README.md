@@ -90,4 +90,10 @@ Specials thanks to:
 | Contributor  | Features      | | Github Link |
 | ------------ | ------------- | | ----------- |
 | @afalabarce  | TopAppBarShape| | [GitHub Page](https://github.com/afalabarce)      |
+
+| Command | Description |
+| --- | --- |
+| `git status` | List all *new or modified* files |
+| `git diff` | Show file differences that **haven't been** staged |
+
 Any help to collect shapes and improve the code will be welcome.
