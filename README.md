@@ -89,7 +89,7 @@ Specials thanks to:
 
 | Contributor | Features | Github Link |
 | :---         |     :---      |          :--- |
-| `@afalabarce`   | TopAppBarShape     | git status    |
+| `@afalabarce`   | TopAppBarShape     | [afalabarce](https://github.com/afalabarce)    |
 
 | Contributor | Features | | Github Link |
 | --- | --- | --- |
