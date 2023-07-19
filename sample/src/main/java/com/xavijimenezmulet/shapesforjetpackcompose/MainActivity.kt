@@ -140,7 +140,6 @@ private val gridItems = listOf(
     Shapes.Bubble,
     Shapes.SemiCircle,
     Shapes.Octagon,
-    Shapes.Pacman
 )
 
 sealed class Shapes(val shape: Shape, val title: String, val textSize: Int = 15) {
