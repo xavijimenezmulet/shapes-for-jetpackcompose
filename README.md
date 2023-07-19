@@ -17,7 +17,7 @@ The Compose Shapes Repository is a collection of shape utilities and custom shap
 
 Possible animations: 
 
-![PacmanShape](https://github.com/xavijimenezmulet/shapes-for-jetpackcompose/assets/44567433/1f4c9fce-0d35-4c9a-9dfe-ba272cf8c28b)
+<img src="https://github.com/xavijimenezmulet/shapes-for-jetpackcompose/assets/44567433/1f4c9fce-0d35-4c9a-9dfe-ba272cf8c28b" width="250" height="500"/>
 
 ## Features
 
