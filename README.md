@@ -89,8 +89,7 @@ Specials thanks to:
 
 | Contributor | Center-aligned | Right-aligned |
 | :---         |     :---      |          :--- |
-| git status   | git status     | git status    |
-| git diff     | git diff       | git diff      |
+| `@afalabarce`   | git status     | git status    |
 
 | Contributor | Features | | Github Link |
 | --- | --- | --- |
