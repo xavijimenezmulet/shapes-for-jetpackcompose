@@ -91,8 +91,4 @@ Specials thanks to:
 | :---         |     :---      |          :--- |
 | `@afalabarce`   | TopAppBarShape     | [afalabarce](https://github.com/afalabarce)    |
 
-| Contributor | Features | | Github Link |
-| --- | --- | --- |
-| `@afalabarce` | TopAppBarShape | [afalabarce](https://github.com/afalabarce)  | 
-
 Any help to collect shapes and improve the code will be welcome.
