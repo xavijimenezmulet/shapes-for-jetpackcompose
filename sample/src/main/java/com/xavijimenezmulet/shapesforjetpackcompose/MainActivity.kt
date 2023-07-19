@@ -124,6 +124,7 @@ fun GridPreview() {
 }
 
 private val gridItems = listOf(
+    Shapes.Pacman,
     Shapes.Star,
     Shapes.Diamond,
     Shapes.Square,
@@ -158,5 +159,5 @@ sealed class Shapes(val shape: Shape, val title: String, val textSize: Int = 15)
     object Bubble : Shapes(shape = BubbleShape, "Bubble")
     object SemiCircle : Shapes(shape = SemicircleShape, "Semi Circle")
     object Octagon : Shapes(shape = OctagonShape, "Octagon")
-    object Pacman : Shapes(shape = PacmanShape, "\n\nPacman", 14)
+    object Pacman : Shapes(shape = PacmanShape(60f), "\n\nPacman", 14)
 }
