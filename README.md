@@ -87,6 +87,11 @@ fun HeartPreview() {
 
 Specials thanks to:
 
+| Contributor | Center-aligned | Right-aligned |
+| :---         |     :---      |          :--- |
+| git status   | git status     | git status    |
+| git diff     | git diff       | git diff      |
+
 | Contributor | Features | | Github Link |
 | --- | --- | --- |
 | `@afalabarce` | TopAppBarShape | [afalabarce](https://github.com/afalabarce)  | 
