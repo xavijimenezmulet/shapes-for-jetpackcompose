@@ -24,10 +24,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -75,7 +71,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Grid() {
     val navController = rememberNavController()
-    var destination by remember { mutableStateOf("home") }
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -91,14 +86,22 @@ fun Grid() {
         }
     ) { paddingValues ->
         var index = 0
+        var text = ""
         NavHost(navController = navController, startDestination = "home") {
             composable("home") {
-                OptionsGrid(paddingValues) {
+                OptionsGrid(paddingValues) { i, title ->
                     navController.navigate("All")
-                    index = it
+                    text = title
+                    index = i
                 }
             }
-            composable("All") { AllScreen(paddingValues = paddingValues, getListByIndex(index)) }
+            composable("All") {
+                AllScreen(
+                    paddingValues = paddingValues,
+                    getListByIndex(index),
+                    text
+                )
+            }
         }
 
     }
@@ -138,51 +141,61 @@ private val optionItems = listOf(
 @Composable
 fun OptionsGrid(
     paddingValues: PaddingValues,
-    cardClick: (Int) -> Unit
+    cardClick: (Int, String) -> Unit
 ) {
-
-    LazyVerticalGrid(
-        columns = GridCells.Adaptive(128.dp),
-
-        // content padding
-        contentPadding = paddingValues,
-        content = {
-            items(optionItems.size) { index ->
-                val option = optionItems[index]
-                Card(
-                    modifier = Modifier
-                        .padding(4.dp)
-                        .fillMaxWidth(),
-                    elevation = CardDefaults.cardElevation(8.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color.Red),
-                    onClick = {
-                        cardClick(index)
-                    }
-                ) {
-                    Column(
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(paddingValues),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "Shapes",
+            fontWeight = FontWeight.Bold,
+            fontSize = 30.sp,
+            color = Color.Black,
+            textAlign = TextAlign.Center
+        )
+        LazyVerticalGrid(
+            columns = GridCells.Adaptive(128.dp),
+            content = {
+                items(optionItems.size) { index ->
+                    val option = optionItems[index]
+                    Card(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(10.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
+                            .padding(4.dp)
+                            .fillMaxWidth(),
+                        elevation = CardDefaults.cardElevation(8.dp),
+                        colors = CardDefaults.cardColors(containerColor = Color.Red),
+                        onClick = {
+                            cardClick(index, option.text)
+                        }
                     ) {
-                        Box(
+                        Column(
                             modifier = Modifier
-                                .size(40.dp)
-                                .clip(option.image)
-                                .background(Color.Black)
-                        )
-                        Text(
-                            text = option.text,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 15.sp,
-                            color = Color.Black,
-                            textAlign = TextAlign.Center
-                        )
+                                .fillMaxWidth()
+                                .padding(10.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .size(40.dp)
+                                    .clip(option.image)
+                                    .background(Color.Black)
+                            )
+                            Text(
+                                text = option.text,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 15.sp,
+                                color = Color.Black,
+                                textAlign = TextAlign.Center
+                            )
+                        }
                     }
                 }
             }
-        }
-    )
+        )
+    }
 }
 

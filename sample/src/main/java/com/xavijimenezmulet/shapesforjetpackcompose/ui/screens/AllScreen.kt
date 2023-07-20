@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.xavijimenezmulet.shapesforjetpackcompose.ui.common.Shapes
@@ -30,33 +31,47 @@ import com.xavijimenezmulet.shapesforjetpackcompose.ui.common.Shapes
 @Composable
 fun AllScreen(
     paddingValues: PaddingValues,
-    list: List<Shapes>
+    list: List<Shapes>,
+    text: String
 ) {
-    LazyVerticalGrid(
+    Column(
         modifier = Modifier
-            .padding(paddingValues)
-            .fillMaxSize(),
-        columns = GridCells.Fixed(2)
+            .fillMaxSize()
+            .padding(paddingValues),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        items(list.size) { item ->
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Box(
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .size(100.dp)
-                        .clip(list[item].shape)
-                        .background(Color.Red),
-                    contentAlignment = Alignment.Center
+        Text(
+            text = text,
+            fontWeight = FontWeight.Bold,
+            fontSize = 30.sp,
+            color = Color.Black,
+            textAlign = TextAlign.Center
+        )
+        LazyVerticalGrid(
+            modifier = Modifier
+                .fillMaxSize(),
+            columns = GridCells.Fixed(2)
+        ) {
+            items(list.size) { item ->
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(
-                        list[item].title,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = list[item].textSize.sp
-                    )
+                    Box(
+                        modifier = Modifier
+                            .padding(16.dp)
+                            .size(100.dp)
+                            .clip(list[item].shape)
+                            .background(Color.Red),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            list[item].title,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = list[item].textSize.sp
+                        )
+                    }
                 }
             }
         }
