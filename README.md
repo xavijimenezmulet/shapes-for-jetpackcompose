@@ -13,7 +13,9 @@
 
 The Compose Shapes Repository is a collection of shape utilities and custom shapes designed specifically for use with Jetpack Compose. This repository aims to provide a comprehensive set of pre-defined shapes that can be easily used and customized in your Compose UI projects.
 
-<img src="https://github.com/xavijimenezmulet/shapes-for-jetpackcompose/assets/44567433/18655b88-2db5-40c2-b274-cc184c79501f" width="250" height="500"/> <img src="https://github.com/xavijimenezmulet/shapes-for-jetpackcompose/assets/44567433/5eeb070a-de12-4370-83ee-e4aa676b5fc5" width="250" height="500"/> 
+<img src="https://github.com/xavijimenezmulet/shapes-for-jetpackcompose/assets/44567433/f3ed103d-f1b3-425e-94bd-c1e040752bd8" width="175" height="425"/> <img src="https://github.com/xavijimenezmulet/shapes-for-jetpackcompose/assets/44567433/18655b88-2db5-40c2-b274-cc184c79501f" width="175" height="425"/> <img src="https://github.com/xavijimenezmulet/shapes-for-jetpackcompose/assets/44567433/5eeb070a-de12-4370-83ee-e4aa676b5fc5" width="175" height="425"/>
+
+<img src="https://github.com/xavijimenezmulet/shapes-for-jetpackcompose/assets/44567433/377e573a-a997-4465-9d87-ec49bd4b7b17" width="175" height="425"/>
 
 Possible animations: 
 
