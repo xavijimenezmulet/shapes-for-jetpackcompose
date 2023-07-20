@@ -105,6 +105,13 @@ sealed class ProgrammingShapes(shape: Shape, title: String, textSize: Int = 15) 
     Shapes(shape, title, textSize) {
 
     object Android : ProgrammingShapes(shape = AndroidShape, "Android", 14)
+    object Apple : ProgrammingShapes(shape = AppleShape, "\nApple", 14)
+    object Java : ProgrammingShapes(shape = JavaShape, "\nJava", 7)
+    object Kotlin : ProgrammingShapes(shape = KotlinShape, "\n\n\nKotlin", 14)
+    object CPlusPlus : ProgrammingShapes(shape = CPlusPlusShape, "\n\n\nC++", 14)
+    object CSharp : ProgrammingShapes(shape = CSharpShape, "\n\n\nC#", 14)
+    object CNormal : ProgrammingShapes(shape = CShape, "\n\n\nC", 14)
+    object Gradle : ProgrammingShapes(shape = GradleShape, "\nGradle", 14)
 
     companion object {
         fun valueOf(value: ProgrammingShapes): Shapes? = valueOf(value as Shape)
