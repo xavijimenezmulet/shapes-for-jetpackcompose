@@ -1,4 +1,4 @@
-package com.xavijimenezmulet.shapes
+package com.xavijimenezmulet.shapes.topbar
 
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Outline

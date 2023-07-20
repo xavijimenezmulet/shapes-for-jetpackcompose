@@ -1,4 +1,4 @@
-package com.xavijimenezmulet.shapes
+package com.xavijimenezmulet.shapes.geometry
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Outline
@@ -22,45 +23,28 @@ import androidx.compose.ui.unit.dp
 
 /**
  *   @author xavierjimenez
- *   @since 6/7/23
+ *   @since 18/7/23
  *   @email xavijimenezmulet@macaqueconsulting.com
  */
-
-val DiamondShape: Shape = object : Shape {
+val SemicircleShape: Shape = object : Shape {
     override fun createOutline(
         size: Size,
         layoutDirection: LayoutDirection,
         density: Density
     ): Outline {
         val path = Path()
-        val starPoints = 2
-        val innerRadiusFactor = 0.8f
 
+        val radius = size.width / 2
         val centerX = size.width / 2
-        val centerY = size.height / 2
-        val angleStep = 360f / (starPoints * 2)
+        val centerY = size.height / 2 + radius / 2
 
-        for (i in 0 until starPoints * 2) {
-            val currentAngle = i * angleStep + 90f
-            val radius = if (i % 2 == 0) {
-                size.width / 2
-            } else {
-                size.width / 2 * innerRadiusFactor
-            }
+        val rectLeft = centerX - radius
+        val rectTop = centerY - radius
+        val rectRight = centerX + radius
+        val rectBottom = centerY + radius
 
-            val x = centerX + radius * kotlin.math.cos(Math.toRadians(currentAngle.toDouble()))
-                .toFloat()
-            val y = centerY + radius * kotlin.math.sin(Math.toRadians(currentAngle.toDouble()))
-                .toFloat()
-
-            if (i == 0) {
-                path.moveTo(x, y)
-            } else {
-                path.lineTo(x, y)
-            }
-        }
-
-        path.close()
+        val rect = Rect(rectLeft, rectTop, rectRight, rectBottom)
+        path.arcTo(rect, 180f, 180f, forceMoveTo = false)
 
         return Outline.Generic(path)
     }
@@ -68,7 +52,7 @@ val DiamondShape: Shape = object : Shape {
 
 @Preview
 @Composable
-fun DiamondPreview() {
+fun SemicirclePreview() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -76,8 +60,8 @@ fun DiamondPreview() {
     ) {
         Box(
             modifier = Modifier
-                .size(200.dp)
-                .clip(DiamondShape)
+                .size(100.dp)
+                .clip(SemicircleShape)
                 .background(Color.Yellow)
         )
     }

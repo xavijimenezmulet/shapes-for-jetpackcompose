@@ -1,5 +1,6 @@
-package com.xavijimenezmulet.shapes
+package com.xavijimenezmulet.shapes.weather
 
+import androidx.annotation.IntRange
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -26,31 +27,50 @@ import androidx.compose.ui.unit.dp
  *   @email xavijimenezmulet@macaqueconsulting.com
  */
 
-val BubbleShape: Shape = object : Shape {
+class StarShape(@IntRange(from = 5, to = 15) val starPoints: Int) : Shape {
+    private val points = starPoints
     override fun createOutline(
         size: Size,
         layoutDirection: LayoutDirection,
         density: Density
     ): Outline {
-        return Outline.Generic(Path().apply {
-            val width = size.width
-            val height = size.height
+        val path = Path()
+        val starPoints = points
+        val innerRadiusFactor = 0.5f
 
-            moveTo(height * 0.1f, width * 0.2f)
-            lineTo(height * 0.1f, width * 0.8f)
-            lineTo(height * 0.4f, width * 0.8f)
-            lineTo(height * 0.5f, width)
-            lineTo(height * 0.6f, width * 0.8f)
-            lineTo(height * 0.9f, width * 0.8f)
-            lineTo(height * 0.9f, width * 0.2f)
-            close()
-        })
+        val centerX = size.width / 2
+        val centerY = size.height / 2
+        val angleStep = 360f / (starPoints * 2)
+
+        for (i in 0 until starPoints * 2) {
+            val currentAngle = i * angleStep + 55f
+            val radius = if (i % 2 == 0) {
+                size.width / 2
+            } else {
+                size.width / 2 * innerRadiusFactor
+            }
+
+            val x = centerX + radius * kotlin.math.cos(Math.toRadians(currentAngle.toDouble()))
+                .toFloat()
+            val y = centerY + radius * kotlin.math.sin(Math.toRadians(currentAngle.toDouble()))
+                .toFloat()
+
+            if (i == 0) {
+                path.moveTo(x, y)
+            } else {
+                path.lineTo(x, y)
+            }
+        }
+
+        path.close()
+
+        return Outline.Generic(path)
     }
 }
 
 @Preview
 @Composable
-fun HalfMoonPreview() {
+fun StarPreview() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -58,8 +78,8 @@ fun HalfMoonPreview() {
     ) {
         Box(
             modifier = Modifier
-                .size(100.dp)
-                .clip(BubbleShape)
+                .size(200.dp)
+                .clip(StarShape(5))
                 .background(Color.Yellow)
         )
     }

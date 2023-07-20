@@ -1,4 +1,4 @@
-package com.xavijimenezmulet.shapes
+package com.xavijimenezmulet.shapes.geometry
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

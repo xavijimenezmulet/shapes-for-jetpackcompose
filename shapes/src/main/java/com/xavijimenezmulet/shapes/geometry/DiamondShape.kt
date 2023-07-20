@@ -1,4 +1,4 @@
-package com.xavijimenezmulet.shapes
+package com.xavijimenezmulet.shapes.geometry
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -26,56 +26,49 @@ import androidx.compose.ui.unit.dp
  *   @email xavijimenezmulet@macaqueconsulting.com
  */
 
-val HeartShape: Shape = object : Shape {
+val DiamondShape: Shape = object : Shape {
     override fun createOutline(
         size: Size,
         layoutDirection: LayoutDirection,
         density: Density
     ): Outline {
-        val path = Path().apply {
-            heartPath(size = size)
-            close()
+        val path = Path()
+        val starPoints = 2
+        val innerRadiusFactor = 0.8f
+
+        val centerX = size.width / 2
+        val centerY = size.height / 2
+        val angleStep = 360f / (starPoints * 2)
+
+        for (i in 0 until starPoints * 2) {
+            val currentAngle = i * angleStep + 90f
+            val radius = if (i % 2 == 0) {
+                size.width / 2
+            } else {
+                size.width / 2 * innerRadiusFactor
+            }
+
+            val x = centerX + radius * kotlin.math.cos(Math.toRadians(currentAngle.toDouble()))
+                .toFloat()
+            val y = centerY + radius * kotlin.math.sin(Math.toRadians(currentAngle.toDouble()))
+                .toFloat()
+
+            if (i == 0) {
+                path.moveTo(x, y)
+            } else {
+                path.lineTo(x, y)
+            }
         }
+
+        path.close()
+
         return Outline.Generic(path)
     }
 }
 
-private fun Path.heartPath(size: Size): Path {
-    val width: Float = size.width
-    val height: Float = size.height
-
-    moveTo(width / 2, height / 5)
-
-    cubicTo(
-        5 * width / 14, 0f,
-        0f, height / 15,
-        width / 28, 2 * height / 5
-    )
-
-    cubicTo(
-        width / 14, 2 * height / 3,
-        3 * width / 7, 5 * height / 6,
-        width / 2, height
-    )
-
-    cubicTo(
-        4 * width / 7, 5 * height / 6,
-        13 * width / 14, 2 * height / 3,
-        27 * width / 28, 2 * height / 5
-    )
-
-    cubicTo(
-        width, height / 15,
-        9 * width / 14, 0f,
-        width / 2, height / 5
-    )
-    return this
-}
-
-
 @Preview
 @Composable
-fun HeartPreview() {
+fun DiamondPreview() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -83,8 +76,8 @@ fun HeartPreview() {
     ) {
         Box(
             modifier = Modifier
-                .size(100.dp)
-                .clip(HeartShape)
+                .size(200.dp)
+                .clip(DiamondShape)
                 .background(Color.Yellow)
         )
     }

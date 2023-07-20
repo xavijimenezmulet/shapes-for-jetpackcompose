@@ -1,4 +1,4 @@
-package com.xavijimenezmulet.shapes
+package com.xavijimenezmulet.shapes.geometry
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -19,6 +19,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import kotlin.math.cos
+import kotlin.math.sin
 
 /**
  *   @author xavierjimenez
@@ -26,27 +28,38 @@ import androidx.compose.ui.unit.dp
  *   @email xavijimenezmulet@macaqueconsulting.com
  */
 
-val SquareShape: Shape = object : Shape {
+
+val PolygonShape: Shape = object : Shape {
     override fun createOutline(
         size: Size,
         layoutDirection: LayoutDirection,
         density: Density
     ): Outline {
-        val path = Path()
-
-        path.moveTo(0f, 0f) // Top-left
-        path.lineTo(size.width, 0f) // Top-right
-        path.lineTo(size.width, size.height) // Bottom-right
-        path.lineTo(0f, size.height) // Bottom-left
-        path.close()
-
-        return Outline.Generic(path)
+        return Outline.Generic(
+            Path().apply {
+                val radius = if (size.width > size.height) size.width / 2f else size.height / 2f
+                val angle = 2.0 * Math.PI / 5
+                val cx = size.width / 2f
+                val cy = size.height / 2f
+                val r = 198f * (Math.PI / 180)
+                moveTo(
+                    cx + (radius * cos(0.0 + r).toFloat()),
+                    cy + (radius * sin(0.0 + r).toFloat())
+                )
+                for (i in 1 until 5) {
+                    lineTo(
+                        cx + (radius * cos(angle * i + r).toFloat()),
+                        cy + (radius * sin(angle * i + r).toFloat())
+                    )
+                }
+                close()
+            })
     }
 }
 
 @Preview
 @Composable
-fun SquarePreview() {
+fun PolygonPreview() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -55,9 +68,8 @@ fun SquarePreview() {
         Box(
             modifier = Modifier
                 .size(200.dp)
-                .clip(SquareShape)
+                .clip(PolygonShape)
                 .background(Color.Yellow)
         )
     }
 }
-

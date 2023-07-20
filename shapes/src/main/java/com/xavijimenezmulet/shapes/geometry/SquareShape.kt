@@ -1,4 +1,4 @@
-package com.xavijimenezmulet.shapes
+package com.xavijimenezmulet.shapes.geometry
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -19,7 +19,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import java.lang.Math.tan
 
 /**
  *   @author xavierjimenez
@@ -27,30 +26,27 @@ import java.lang.Math.tan
  *   @email xavijimenezmulet@macaqueconsulting.com
  */
 
-class ParallelogramShape(private val angle: Float) : Shape {
+val SquareShape: Shape = object : Shape {
     override fun createOutline(
         size: Size,
         layoutDirection: LayoutDirection,
         density: Density
     ): Outline {
-        return Outline.Generic(
+        val path = Path()
 
-            Path().apply {
-                val radian = (90 - angle) * Math.PI / 180
-                val xOnOpposite = (size.height * tan(radian)).toFloat()
-                moveTo(0f, size.height)
-                lineTo(x = xOnOpposite, y = 0f)
-                lineTo(x = size.width, y = 0f)
-                lineTo(x = size.width - xOnOpposite, y = size.height)
-                lineTo(x = xOnOpposite, y = size.height)
-            }
-        )
+        path.moveTo(0f, 0f) // Top-left
+        path.lineTo(size.width, 0f) // Top-right
+        path.lineTo(size.width, size.height) // Bottom-right
+        path.lineTo(0f, size.height) // Bottom-left
+        path.close()
+
+        return Outline.Generic(path)
     }
 }
 
 @Preview
 @Composable
-fun ParallelogramPreview() {
+fun SquarePreview() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -59,8 +55,9 @@ fun ParallelogramPreview() {
         Box(
             modifier = Modifier
                 .size(200.dp)
-                .clip(ParallelogramShape(70f))
+                .clip(SquareShape)
                 .background(Color.Yellow)
         )
     }
 }
+

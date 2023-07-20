@@ -1,4 +1,4 @@
-package com.xavijimenezmulet.shapes
+package com.xavijimenezmulet.shapes.geometry
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,16 +21,11 @@ import androidx.compose.ui.unit.dp
  *   @email xavijimenezmulet@macaqueconsulting.com
  */
 
-val LemonShape: RoundedCornerShape = RoundedCornerShape(
-    topEndPercent = 65,
-    topStartPercent = 5,
-    bottomStartPercent = 65,
-    bottomEndPercent = 10
-)
+val CutSquareShape: CutCornerShape = CutCornerShape(10.dp)
 
 @Preview
 @Composable
-fun LemonPreview() {
+fun CutSquarePreview() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -39,8 +34,9 @@ fun LemonPreview() {
         Box(
             modifier = Modifier
                 .size(200.dp)
-                .clip(LemonShape)
+                .clip(CutSquareShape)
                 .background(Color.Yellow)
         )
     }
 }
+

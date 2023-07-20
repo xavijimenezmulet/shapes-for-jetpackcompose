@@ -1,6 +1,5 @@
-package com.xavijimenezmulet.shapes
+package com.xavijimenezmulet.shapes.geometry
 
-import androidx.annotation.IntRange
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -20,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import java.lang.Math.tan
 
 /**
  *   @author xavierjimenez
@@ -27,50 +27,30 @@ import androidx.compose.ui.unit.dp
  *   @email xavijimenezmulet@macaqueconsulting.com
  */
 
-class StarShape(@IntRange(from = 5, to = 15) val starPoints: Int) : Shape {
-    private val points = starPoints
+class ParallelogramShape(private val angle: Float) : Shape {
     override fun createOutline(
         size: Size,
         layoutDirection: LayoutDirection,
         density: Density
     ): Outline {
-        val path = Path()
-        val starPoints = points
-        val innerRadiusFactor = 0.5f
+        return Outline.Generic(
 
-        val centerX = size.width / 2
-        val centerY = size.height / 2
-        val angleStep = 360f / (starPoints * 2)
-
-        for (i in 0 until starPoints * 2) {
-            val currentAngle = i * angleStep + 55f
-            val radius = if (i % 2 == 0) {
-                size.width / 2
-            } else {
-                size.width / 2 * innerRadiusFactor
+            Path().apply {
+                val radian = (90 - angle) * Math.PI / 180
+                val xOnOpposite = (size.height * tan(radian)).toFloat()
+                moveTo(0f, size.height)
+                lineTo(x = xOnOpposite, y = 0f)
+                lineTo(x = size.width, y = 0f)
+                lineTo(x = size.width - xOnOpposite, y = size.height)
+                lineTo(x = xOnOpposite, y = size.height)
             }
-
-            val x = centerX + radius * kotlin.math.cos(Math.toRadians(currentAngle.toDouble()))
-                .toFloat()
-            val y = centerY + radius * kotlin.math.sin(Math.toRadians(currentAngle.toDouble()))
-                .toFloat()
-
-            if (i == 0) {
-                path.moveTo(x, y)
-            } else {
-                path.lineTo(x, y)
-            }
-        }
-
-        path.close()
-
-        return Outline.Generic(path)
+        )
     }
 }
 
 @Preview
 @Composable
-fun StarPreview() {
+fun ParallelogramPreview() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -79,7 +59,7 @@ fun StarPreview() {
         Box(
             modifier = Modifier
                 .size(200.dp)
-                .clip(StarShape(5))
+                .clip(ParallelogramShape(70f))
                 .background(Color.Yellow)
         )
     }

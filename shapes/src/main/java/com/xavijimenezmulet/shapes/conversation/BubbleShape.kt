@@ -1,4 +1,4 @@
-package com.xavijimenezmulet.shapes
+package com.xavijimenezmulet.shapes.conversation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -22,46 +22,35 @@ import androidx.compose.ui.unit.dp
 
 /**
  *   @author xavierjimenez
- *   @since 18/7/23
+ *   @since 6/7/23
  *   @email xavijimenezmulet@macaqueconsulting.com
  */
-val OctagonShape: Shape = object : Shape {
+
+val BubbleShape: Shape = object : Shape {
     override fun createOutline(
         size: Size,
         layoutDirection: LayoutDirection,
         density: Density
     ): Outline {
-        val path = Path()
+        return Outline.Generic(Path().apply {
+            val width = size.width
+            val height = size.height
 
-        val width = size.width
-        val height = size.height
-
-        val startX = width / 4
-        val endX = width * 3 / 4
-
-        val startY = height / 4
-        val endY = height * 3 / 4
-
-        val offsetX = (size.width - width) / 2
-        val offsetY = (size.height - height) / 2
-
-        path.moveTo(startX + offsetX, offsetY)
-        path.lineTo(endX + offsetX, offsetY)
-        path.lineTo(width + offsetX, startY + offsetY)
-        path.lineTo(width + offsetX, endY + offsetY)
-        path.lineTo(endX + offsetX, height + offsetY)
-        path.lineTo(startX + offsetX, height + offsetY)
-        path.lineTo(offsetX, endY + offsetY)
-        path.lineTo(offsetX, startY + offsetY)
-        path.close()
-
-        return Outline.Generic(path)
+            moveTo(height * 0.1f, width * 0.2f)
+            lineTo(height * 0.1f, width * 0.8f)
+            lineTo(height * 0.4f, width * 0.8f)
+            lineTo(height * 0.5f, width)
+            lineTo(height * 0.6f, width * 0.8f)
+            lineTo(height * 0.9f, width * 0.8f)
+            lineTo(height * 0.9f, width * 0.2f)
+            close()
+        })
     }
 }
 
 @Preview
 @Composable
-fun OctagonPreview() {
+fun HalfMoonPreview() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -70,7 +59,7 @@ fun OctagonPreview() {
         Box(
             modifier = Modifier
                 .size(100.dp)
-                .clip(OctagonShape)
+                .clip(BubbleShape)
                 .background(Color.Yellow)
         )
     }

@@ -1,4 +1,4 @@
-package com.xavijimenezmulet.shapes
+package com.xavijimenezmulet.shapes.food
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -6,18 +6,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Outline
-import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Density
-import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 
 /**
@@ -26,24 +21,16 @@ import androidx.compose.ui.unit.dp
  *   @email xavijimenezmulet@macaqueconsulting.com
  */
 
-val TriangleShape: Shape = object : Shape {
-    override fun createOutline(
-        size: Size,
-        layoutDirection: LayoutDirection,
-        density: Density
-    ): Outline {
-        return Outline.Generic(Path().apply {
-            moveTo(0f, size.height)
-            lineTo(size.width / 2, 0f)
-            lineTo(size.width, size.height)
-            close()
-        })
-    }
-}
+val LemonShape: RoundedCornerShape = RoundedCornerShape(
+    topEndPercent = 65,
+    topStartPercent = 5,
+    bottomStartPercent = 65,
+    bottomEndPercent = 10
+)
 
 @Preview
 @Composable
-fun TrianglePreview() {
+fun LemonPreview() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -52,7 +39,7 @@ fun TrianglePreview() {
         Box(
             modifier = Modifier
                 .size(200.dp)
-                .clip(TriangleShape)
+                .clip(LemonShape)
                 .background(Color.Yellow)
         )
     }

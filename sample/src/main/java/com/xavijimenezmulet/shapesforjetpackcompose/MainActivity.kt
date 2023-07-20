@@ -7,12 +7,15 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -21,32 +24,34 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.xavijimenezmulet.shapes.AppBarShape
-import com.xavijimenezmulet.shapes.BubbleShape
-import com.xavijimenezmulet.shapes.CircularShape
-import com.xavijimenezmulet.shapes.CutSquareShape
-import com.xavijimenezmulet.shapes.DiagonalStartCutShape
-import com.xavijimenezmulet.shapes.DiamondShape
-import com.xavijimenezmulet.shapes.HeartShape
-import com.xavijimenezmulet.shapes.LemonShape
-import com.xavijimenezmulet.shapes.OctagonShape
-import com.xavijimenezmulet.shapes.PacmanShape
-import com.xavijimenezmulet.shapes.ParallelogramShape
-import com.xavijimenezmulet.shapes.PolygonShape
-import com.xavijimenezmulet.shapes.SemicircleShape
-import com.xavijimenezmulet.shapes.SquareShape
-import com.xavijimenezmulet.shapes.StarShape
-import com.xavijimenezmulet.shapes.TicketShape
-import com.xavijimenezmulet.shapes.TriangleShape
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.xavijimenezmulet.shapes.conversation.BubbleShape
+import com.xavijimenezmulet.shapes.food.LemonShape
+import com.xavijimenezmulet.shapes.games.PacmanShape
+import com.xavijimenezmulet.shapes.geometry.CircularShape
+import com.xavijimenezmulet.shapes.love.HeartShape
+import com.xavijimenezmulet.shapes.programming.AndroidShape
+import com.xavijimenezmulet.shapes.topbar.AppBarShape
+import com.xavijimenezmulet.shapes.weather.MoonShape
+import com.xavijimenezmulet.shapes.weather.StarShape
+import com.xavijimenezmulet.shapesforjetpackcompose.ui.common.getListByIndex
+import com.xavijimenezmulet.shapesforjetpackcompose.ui.screens.AllScreen
 import com.xavijimenezmulet.shapesforjetpackcompose.ui.theme.ShapesForJetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -69,6 +74,8 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Grid() {
+    val navController = rememberNavController()
+    var destination by remember { mutableStateOf("home") }
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -83,35 +90,17 @@ fun Grid() {
             )
         }
     ) { paddingValues ->
-        LazyVerticalGrid(
-            modifier = Modifier
-                .padding(paddingValues)
-                .fillMaxSize(),
-            columns = GridCells.Fixed(2)
-        ) {
-            items(gridItems.size) { item ->
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Box(
-                        modifier = Modifier
-                            .padding(16.dp)
-                            .size(100.dp)
-                            .clip(gridItems[item].shape)
-                            .background(Color.Red),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            gridItems[item].title,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = gridItems[item].textSize.sp
-                        )
-                    }
+        var index = 0
+        NavHost(navController = navController, startDestination = "home") {
+            composable("home") {
+                OptionsGrid(paddingValues) {
+                    navController.navigate("All")
+                    index = it
                 }
             }
+            composable("All") { AllScreen(paddingValues = paddingValues, getListByIndex(index)) }
         }
+
     }
 }
 
@@ -123,40 +112,77 @@ fun GridPreview() {
     }
 }
 
-private val gridItems = listOf(
-    Shapes.Pacman,
-    Shapes.Star,
-    Shapes.Diamond,
-    Shapes.Square,
-    Shapes.Circle,
-    Shapes.Triangle,
-    Shapes.Heart,
-    Shapes.Polygon,
-    Shapes.Parallelogram,
-    Shapes.Ticket,
-    Shapes.CutSquare,
-    Shapes.Lemon,
-    Shapes.DiagonalStartCut,
-    Shapes.Bubble,
-    Shapes.SemiCircle,
-    Shapes.Octagon,
+sealed class Option(val text: String, val image: Shape) {
+    object All : Option("All", StarShape(5))
+    object Geometry : Option("Geometry", CircularShape)
+    object Programming : Option("Programming", AndroidShape)
+    object Weather : Option("Weather", MoonShape)
+    object Food : Option("Food", LemonShape)
+    object Conversation : Option("Conversation", BubbleShape)
+    object Love : Option("Love", HeartShape)
+    object Games : Option("Games", PacmanShape(60f))
+}
+
+private val optionItems = listOf(
+    Option.All,
+    Option.Geometry,
+    Option.Programming,
+    Option.Weather,
+    Option.Food,
+    Option.Conversation,
+    Option.Love,
+    Option.Games,
 )
 
-sealed class Shapes(val shape: Shape, val title: String, val textSize: Int = 15) {
-    object Star : Shapes(shape = StarShape(5), "Star")
-    object Diamond : Shapes(shape = DiamondShape, "Diamond")
-    object Square : Shapes(shape = SquareShape, "Square")
-    object Circle : Shapes(shape = CircularShape, "Circle")
-    object Triangle : Shapes(shape = TriangleShape, "Triangle", 10)
-    object Heart : Shapes(shape = HeartShape, "Heart")
-    object Polygon : Shapes(shape = PolygonShape, "Polygon")
-    object Parallelogram : Shapes(shape = ParallelogramShape(70f), "Parallelogram", 9)
-    object Ticket : Shapes(shape = TicketShape(24f), "Ticket")
-    object CutSquare : Shapes(shape = CutSquareShape, "Cut Square")
-    object Lemon : Shapes(shape = LemonShape, "Lemon")
-    object DiagonalStartCut : Shapes(shape = DiagonalStartCutShape, "Diagonal Start", 11)
-    object Bubble : Shapes(shape = BubbleShape, "Bubble")
-    object SemiCircle : Shapes(shape = SemicircleShape, "Semi Circle")
-    object Octagon : Shapes(shape = OctagonShape, "Octagon")
-    object Pacman : Shapes(shape = PacmanShape(60f), "\n\nPacman", 14)
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun OptionsGrid(
+    paddingValues: PaddingValues,
+    cardClick: (Int) -> Unit
+) {
+
+    LazyVerticalGrid(
+        columns = GridCells.Adaptive(128.dp),
+
+        // content padding
+        contentPadding = paddingValues,
+        content = {
+            items(optionItems.size) { index ->
+                val option = optionItems[index]
+                Card(
+                    modifier = Modifier
+                        .padding(4.dp)
+                        .fillMaxWidth(),
+                    elevation = CardDefaults.cardElevation(8.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color.Red),
+                    onClick = {
+                        cardClick(index)
+                    }
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(10.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(40.dp)
+                                .clip(option.image)
+                                .background(Color.Black)
+                        )
+                        Text(
+                            text = option.text,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 15.sp,
+                            color = Color.Black,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+            }
+        }
+    )
 }
+
