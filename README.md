@@ -1,5 +1,6 @@
 # Compose Shapes Repository
 
+[![Shapes Count](https://img.shields.io/badge/Shapes-you%20+26)]
 [![Download](https://jitpack.io/v/xavijimenezmulet/shapes-for-jetpackcompose.svg)](https://jitpack.io/#xavijimenezmulet/shapes-for-jetpackcompose)
 [![API](https://img.shields.io/badge/API-26%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=26)
 ![Build Status](https://github.com/Dhaval2404/ImagePicker/workflows/Build/badge.svg)
