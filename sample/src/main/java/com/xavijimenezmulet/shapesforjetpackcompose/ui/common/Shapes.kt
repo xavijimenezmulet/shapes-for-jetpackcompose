@@ -58,7 +58,7 @@ sealed class FoodShapes(shape: Shape, title: String, textSize: Int = 15) :
 sealed class GamesShapes(shape: Shape, title: String, textSize: Int = 15) :
     Shapes(shape, title, textSize) {
 
-    object Pacman : GamesShapes(shape = PacmanShape(60f), "\n\nPacman", 14)
+    object Pacman : GamesShapes(shape = PacmanShape(60f), "Pacman")
 
     companion object {
         fun valueOf(value: GamesShapes): Shapes? = valueOf(value as Shape)
@@ -73,12 +73,12 @@ sealed class GeometryShapes(shape: Shape, title: String, textSize: Int = 15) :
     object Diamond : GeometryShapes(shape = DiamondShape, "Diamond")
     object Square : GeometryShapes(shape = SquareShape, "Square")
     object Circle : GeometryShapes(shape = CircularShape, "Circle")
-    object Triangle : GeometryShapes(shape = TriangleShape, "Triangle", 10)
+    object Triangle : GeometryShapes(shape = TriangleShape, "Triangle")
     object Polygon : GeometryShapes(shape = PolygonShape, "Polygon")
-    object Parallelogram : GeometryShapes(shape = ParallelogramShape(70f), "Parallelogram", 9)
+    object Parallelogram : GeometryShapes(shape = ParallelogramShape(70f), "Parallelogram")
     object Ticket : GeometryShapes(shape = TicketShape(24f), "Ticket")
     object CutSquare : GeometryShapes(shape = CutSquareShape, "Cut Square")
-    object DiagonalStartCut : GeometryShapes(shape = DiagonalStartCutShape, "Diagonal Start", 11)
+    object DiagonalStartCut : GeometryShapes(shape = DiagonalStartCutShape, "Diagonal Start")
     object SemiCircle : GeometryShapes(shape = SemicircleShape, "Semi Circle")
     object Octagon : GeometryShapes(shape = OctagonShape, "Octagon")
 
@@ -104,14 +104,14 @@ sealed class LoveShapes(shape: Shape, title: String, textSize: Int = 15) :
 sealed class ProgrammingShapes(shape: Shape, title: String, textSize: Int = 15) :
     Shapes(shape, title, textSize) {
 
-    object Android : ProgrammingShapes(shape = AndroidShape, "Android", 14)
-    object Apple : ProgrammingShapes(shape = AppleShape, "\nApple", 14)
-    object Java : ProgrammingShapes(shape = JavaShape, "\nJava", 7)
-    object Kotlin : ProgrammingShapes(shape = KotlinShape, "\n\n\nKotlin", 14)
-    object CPlusPlus : ProgrammingShapes(shape = CPlusPlusShape, "\n\n\nC++", 14)
-    object CSharp : ProgrammingShapes(shape = CSharpShape, "\n\n\nC#", 14)
-    object CNormal : ProgrammingShapes(shape = CShape, "\n\n\nC", 14)
-    object Gradle : ProgrammingShapes(shape = GradleShape, "\nGradle", 14)
+    object Android : ProgrammingShapes(shape = AndroidShape, "Android")
+    object Apple : ProgrammingShapes(shape = AppleShape, "Apple")
+    object Java : ProgrammingShapes(shape = JavaShape, "Java")
+    object Kotlin : ProgrammingShapes(shape = KotlinShape, "Kotlin")
+    object CPlusPlus : ProgrammingShapes(shape = CPlusPlusShape, "C++")
+    object CSharp : ProgrammingShapes(shape = CSharpShape, "C#")
+    object CNormal : ProgrammingShapes(shape = CShape, "C")
+    object Gradle : ProgrammingShapes(shape = GradleShape, "Gradle")
 
     companion object {
         fun valueOf(value: ProgrammingShapes): Shapes? = valueOf(value as Shape)
@@ -124,7 +124,7 @@ sealed class WeatherShapes(shape: Shape, title: String, textSize: Int = 15) :
     Shapes(shape, title, textSize) {
 
     object Star : WeatherShapes(shape = StarShape(5), "Star")
-    object Moon : WeatherShapes(shape = MoonShape, "\n\nMoon", 14)
+    object Moon : WeatherShapes(shape = MoonShape, "Moon")
 
     companion object {
         fun valueOf(value: WeatherShapes): Shapes? = valueOf(value as Shape)

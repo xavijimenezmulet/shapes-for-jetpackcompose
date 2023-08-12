@@ -79,9 +79,14 @@ fun Grid() {
                     .fillMaxWidth()
                     .clip(AppBarShape),
                 title = {
-                    Text(text = "TopBar Shape", fontWeight = FontWeight.Bold, fontSize = 17.sp)
+                    Text(
+                        text = "TopBar Shape",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 17.sp,
+                        color = Color.White
+                    )
                 },
-                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.Red)
+                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color(0xFF003049))
             )
         }
     ) { paddingValues ->
@@ -166,7 +171,7 @@ fun OptionsGrid(
                             .padding(4.dp)
                             .fillMaxWidth(),
                         elevation = CardDefaults.cardElevation(8.dp),
-                        colors = CardDefaults.cardColors(containerColor = Color.Red),
+                        colors = CardDefaults.cardColors(containerColor = Color(0xFF003049)),
                         onClick = {
                             cardClick(index, option.text)
                         }
@@ -182,13 +187,14 @@ fun OptionsGrid(
                                 modifier = Modifier
                                     .size(40.dp)
                                     .clip(option.image)
-                                    .background(Color.Black)
+                                    .background(Color.Red)
                             )
                             Text(
+                                modifier = Modifier.padding(5.dp),
                                 text = option.text,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 15.sp,
-                                color = Color.Black,
+                                color = Color.White,
                                 textAlign = TextAlign.Center
                             )
                         }
